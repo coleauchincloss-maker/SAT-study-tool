@@ -129,6 +129,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self._match_stream()
         if route == "/api/questions/imported":
             return self._questions_imported()
+        if route == "/api/leaderboard":
+            return self._leaderboard()
+        if route == "/api/leaderboard/locations":
+            return self._leaderboard_locations()
         return super().do_GET()
 
     def do_POST(self):
@@ -142,6 +146,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             "/api/match/action": self._match_action,
             "/api/questions/import": self._questions_import,
             "/api/questions/import/clear": self._questions_import_clear,
+            "/api/leaderboard/submit": self._leaderboard_submit,
         }
         handler = routes.get(route)
         if not handler:
@@ -258,6 +263,33 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         gen.clear_imported()
         self._send_json({"ok": True})
+
+    # ─────────────────────────── leaderboard ───────────────────────────
+    def _leaderboard(self):
+        import leaderboard as lb
+
+        params = self._query()
+        location = params.get("location") or None
+        try:
+            limit = int(params.get("limit", 100))
+        except ValueError:
+            limit = 100
+        self._send_json({"players": lb.rankings(location=location, limit=limit)})
+
+    def _leaderboard_locations(self):
+        import leaderboard as lb
+
+        self._send_json({"locations": lb.locations()})
+
+    def _leaderboard_submit(self, body):
+        import leaderboard as lb
+
+        player_id = body.get("playerId", "")
+        try:
+            row = lb.submit(player_id, body)
+        except lb.LeaderboardError as exc:
+            return self._send_json({"error": str(exc)}, status=400)
+        self._send_json({"ok": True, "player": row})
 
     # ─────────────────────────── matches ───────────────────────────
     def _match_info(self):

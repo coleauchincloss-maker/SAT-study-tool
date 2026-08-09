@@ -63,9 +63,29 @@ export function renderImport(root, { actions, lobby }) {
     .join('');
 
   const formatHelp = {
-    text: `One question per block, separated by a line of <code>---</code>. Fields: <code>Q:</code>, <code>A)</code>–<code>D)</code>, <code>ANSWER:</code> (A–D), <code>EXPLANATION:</code>, <code>DOMAIN:</code>, <code>SECTION:</code> (math or rw).`,
-    json: `An array of objects, or <code>{"questions":[...]}</code>. Each needs <code>prompt</code>, <code>choices</code> (4), <code>answer</code> (0-3 or a letter), and ideally <code>section</code> ("math"/"rw"), <code>domain</code>, <code>explanation</code>.`,
-    csv: `Header row required: <code>prompt,choice1,choice2,choice3,choice4,answer,explanation,domain,section,skill,difficulty</code>. Column order doesn't matter; extra columns are ignored.`,
+    text: `
+      <ul class="import-field-list">
+        <li><code>Q:</code> <span>the question text</span></li>
+        <li><code>A)</code>–<code>D)</code> <span>the four answer choices, one per line</span></li>
+        <li><code>ANSWER:</code> <span>which letter is correct — A, B, C, or D <em>(required)</em></span></li>
+        <li><code>EXPLANATION:</code> <span>why that's the answer <em>(optional)</em></span></li>
+        <li><code>DOMAIN:</code> <span>e.g. "Algebra" or "Craft & Structure" <em>(optional)</em></span></li>
+        <li><code>SECTION:</code> <span><code>math</code> or <code>rw</code> <em>(optional — falls back to the picker on the right)</em></span></li>
+      </ul>
+      <p class="card-sub">Put a line of <code>---</code> between each question. That's the whole format — the sample below shows two questions end to end.</p>`,
+    json: `
+      <p class="card-sub">An array of question objects, or <code>{"questions": [...]}</code>.</p>
+      <ul class="import-field-list">
+        <li><code>prompt</code> <span>the question text <em>(required)</em></span></li>
+        <li><code>choices</code> <span>an array of exactly 4 answer strings <em>(required)</em></span></li>
+        <li><code>answer</code> <span>which one is correct — 0, 1, 2, 3, or a letter <em>(required)</em></span></li>
+        <li><code>section</code> <span><code>"math"</code> or <code>"rw"</code> <em>(optional)</em></span></li>
+        <li><code>domain</code>, <code>explanation</code> <span><em>(optional)</em></span></li>
+      </ul>`,
+    csv: `
+      <p class="card-sub">First row must be exactly this header:</p>
+      <pre class="import-csv-header">prompt,choice1,choice2,choice3,choice4,answer,explanation,domain,section,skill,difficulty</pre>
+      <p class="card-sub">Column <em>order</em> doesn't matter as long as the header names match; any extra columns beyond these are just ignored.</p>`,
   }[format];
 
   const previewBlock = preview
@@ -126,8 +146,9 @@ export function renderImport(root, { actions, lobby }) {
       <div class="grid">
         <section class="card col-8">
           <h2>1. Paste or upload</h2>
+          <p class="card-sub">Pick a format below, then either type/paste your questions in the box, or use a file. Click <strong>Preview</strong> to check them before anything is imported.</p>
           <div class="format-tabs">${formatTabs}</div>
-          <p class="card-sub">${formatHelp}</p>
+          <div class="import-format-help">${formatHelp}</div>
 
           <textarea id="import-text" class="import-textarea" rows="14" placeholder="${format === 'text' ? esc(SAMPLE) : 'Paste your questions here…'}">${esc(rawText)}</textarea>
 

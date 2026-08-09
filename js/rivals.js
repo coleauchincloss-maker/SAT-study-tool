@@ -3,6 +3,8 @@
 
 const RIVALS_KEY = 'satquest.rivals';
 const PROFILE_KEY = 'satquest.profile';
+const LOCATION_KEY = 'satquest.location';
+const PLAYER_ID_KEY = 'satquest.playerId';
 
 // ─────────────────────────── your name ───────────────────────────
 
@@ -20,6 +22,47 @@ export function setMyName(name) {
     if (clean) localStorage.setItem(PROFILE_KEY, clean);
   } catch {
     /* ignore */
+  }
+}
+
+// ─────────────────────────── your location ───────────────────────────
+// Self-reported, free text (city, school, whatever you want to be grouped
+// by) — there's no accounts or geolocation lookup here, so it's exactly as
+// trustworthy as everyone typing it in honestly.
+
+export function myLocation() {
+  try {
+    return localStorage.getItem(LOCATION_KEY) || '';
+  } catch {
+    return '';
+  }
+}
+
+export function setMyLocation(location) {
+  try {
+    const clean = (location || '').trim().slice(0, 40);
+    if (clean) localStorage.setItem(LOCATION_KEY, clean);
+    else localStorage.removeItem(LOCATION_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+// ─────────────────────────── anonymous player id ───────────────────────────
+// A random id generated once per browser so the leaderboard can update your
+// existing row instead of creating a new one every time you submit a score.
+// It identifies a browser, not a person — clearing site data resets it.
+
+export function myPlayerId() {
+  try {
+    let id = localStorage.getItem(PLAYER_ID_KEY);
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+      localStorage.setItem(PLAYER_ID_KEY, id);
+    }
+    return id;
+  } catch {
+    return 'anonymous';
   }
 }
 

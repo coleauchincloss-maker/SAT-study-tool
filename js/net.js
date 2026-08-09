@@ -151,6 +151,37 @@ export async function clearImportedQuestions() {
   return post('/api/questions/import/clear', {});
 }
 
+// ─────────────────────────── leaderboard ───────────────────────────
+
+export async function submitLeaderboard(payload) {
+  try {
+    return await post('/api/leaderboard/submit', payload);
+  } catch {
+    return null; // best-effort — a failed submit shouldn't interrupt play
+  }
+}
+
+export async function fetchLeaderboard({ location = null, limit = 100 } = {}) {
+  const params = new URLSearchParams();
+  if (location) params.set('location', location);
+  params.set('limit', String(limit));
+  try {
+    const response = await fetch(api(`/api/leaderboard?${params}`), { cache: 'no-store' });
+    return response.ok ? await response.json() : { players: [] };
+  } catch {
+    return { players: [] };
+  }
+}
+
+export async function fetchLeaderboardLocations() {
+  try {
+    const response = await fetch(api('/api/leaderboard/locations'), { cache: 'no-store' });
+    return response.ok ? await response.json() : { locations: [] };
+  } catch {
+    return { locations: [] };
+  }
+}
+
 export async function sendAction(type, payload = {}) {
   if (!session.code || !session.playerId) throw new Error('not in a match');
   const result = await post('/api/match/action', {

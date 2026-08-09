@@ -2,6 +2,7 @@
 // round construction. Pure functions over state — no DOM, no storage.
 
 import { bank } from './bank.js';
+import { overallRecord } from './rivals.js';
 import { skillKey, todayKey } from './state.js';
 
 // ─────────────────────────────── Levels ───────────────────────────────
@@ -36,7 +37,19 @@ export const titleForLevel = (level) => {
     'Grid-In Grinder', // 5
     'Section Slayer', // 6
     'Curve Bender', // 7
-    'Score Report Legend', // 8+
+    'Score Report Legend', // 8
+    'Domain Dominator', // 9
+    'Perfect Scaled Score', // 10
+    'Proctor’s Nightmare', // 11
+    'Superscore Savant', // 12
+    'National Merit Material', // 13
+    'Ivy Bound', // 14
+    'Test Day Titan', // 15
+    'Answer Key Oracle', // 16
+    'The Curve Itself', // 17
+    'SAT Mythos', // 18
+    'Beyond the Bell Curve', // 19
+    'SAT Quest Grandmaster', // 20+
   ];
   return titles[Math.min(level - 1, titles.length - 1)];
 };
@@ -280,6 +293,44 @@ export const BADGES = [
       return tracked.length >= 6 && tracked.every((r) => r.correct / r.seen >= 0.7);
     },
   },
+
+  // ── Bigger volume milestones ──
+  { id: 'grinder-500', name: 'Grinder', icon: '⚙️', desc: 'Answer 500 questions.', test: (s) => s.totalAnswered >= 500 },
+  { id: 'iron-will-1000', name: 'Iron Will', icon: '🗿', desc: 'Answer 1,000 questions.', test: (s) => s.totalAnswered >= 1000 },
+  { id: 'legend-2500', name: 'Legend', icon: '🏛️', desc: 'Answer 2,500 questions.', test: (s) => s.totalAnswered >= 2500 },
+  { id: 'immortal-5000', name: 'Immortal', icon: '♾️', desc: 'Answer 5,000 questions.', test: (s) => s.totalAnswered >= 5000 },
+
+  // ── Bigger combos ──
+  { id: 'combo-30', name: 'Nuclear', icon: '☢️', desc: 'Hit a 30-answer combo.', test: (s) => s.bestCombo >= 30 },
+  { id: 'combo-50', name: 'Godlike', icon: '🌟', desc: 'Hit a 50-answer combo.', test: (s) => s.bestCombo >= 50 },
+
+  // ── Longer streaks ──
+  { id: 'streak-14', name: 'Two-Week Ritual', icon: '📅', desc: 'Practice fourteen days in a row.', test: (s) => s.streak >= 14 },
+  { id: 'streak-30', name: 'Monthly Devotion', icon: '🌕', desc: 'Practice thirty days in a row.', test: (s) => s.streak >= 30 },
+  { id: 'streak-100', name: 'Centurion', icon: '🛡️', desc: 'Practice one hundred days in a row.', test: (s) => s.streak >= 100 },
+
+  // ── Higher levels ──
+  { id: 'level-10', name: 'Perfect Scaled Score', icon: '💎', desc: 'Reach level 10.', test: (s) => levelInfo(s.xp).level >= 10 },
+  { id: 'level-15', name: 'Test Day Titan', icon: '⚡', desc: 'Reach level 15.', test: (s) => levelInfo(s.xp).level >= 15 },
+  { id: 'level-20', name: 'Grandmaster', icon: '🏆', desc: 'Reach level 20.', test: (s) => levelInfo(s.xp).level >= 20 },
+
+  // ── Deeper section mastery ──
+  { id: 'mathlete-100', name: 'Numbers Person', icon: '🧮', desc: 'Get 100 math questions right.', test: (s) => sectionCorrect(s, 'math') >= 100 },
+  { id: 'mathlete-250', name: 'Math Savant', icon: '🔢', desc: 'Get 250 math questions right.', test: (s) => sectionCorrect(s, 'math') >= 250 },
+  { id: 'wordsmith-100', name: 'Well-Read', icon: '📚', desc: 'Get 100 Reading & Writing questions right.', test: (s) => sectionCorrect(s, 'rw') >= 100 },
+  { id: 'wordsmith-250', name: 'Literary Mind', icon: '🖋️', desc: 'Get 250 Reading & Writing questions right.', test: (s) => sectionCorrect(s, 'rw') >= 250 },
+
+  // ── More perfect rounds ──
+  { id: 'flawless-10', name: 'Precision Machine', icon: '🎯', desc: 'Finish ten perfect rounds.', test: (s) => s.perfectRounds >= 10 },
+
+  // ── Speed ──
+  { id: 'quickdraw-50', name: 'Lightning Reflexes', icon: '🌩️', desc: '50 correct answers in under 10 seconds each.', test: (s) => s.fastCorrect >= 50 },
+
+  // ── Duel record (reads your real head-to-head history) ──
+  { id: 'duelist-1', name: 'First Blood', icon: '⚔️', desc: 'Win your first duel.', test: () => overallRecord().wins >= 1 },
+  { id: 'duelist-10', name: 'Seasoned Duelist', icon: '🗡️', desc: 'Win 10 duels.', test: () => overallRecord().wins >= 10 },
+  { id: 'duelist-50', name: 'Arena Champion', icon: '🏹', desc: 'Win 50 duels.', test: () => overallRecord().wins >= 50 },
+  { id: 'duelist-100', name: 'Undisputed', icon: '👑', desc: 'Win 100 duels.', test: () => overallRecord().wins >= 100 },
 ];
 
 export const badgeById = Object.fromEntries(BADGES.map((b) => [b.id, b]));

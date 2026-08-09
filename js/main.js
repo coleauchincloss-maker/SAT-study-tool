@@ -6,9 +6,13 @@ import * as net from './net.js';
 import {
   judgeChallenge,
   makeChallengeCode,
+  myLocation,
   myName,
+  myPlayerId,
+  overallRecord,
   readChallengeCode,
   recordMatch,
+  setMyLocation,
   setMyName,
 } from './rivals.js';
 import { clearState, loadState, saveState } from './state.js';
@@ -31,6 +35,7 @@ let cleanup = null;
 /** Transient hub UI state — not persisted beyond the name. */
 const lobby = {
   name: myName(),
+  location: myLocation(),
   mode: 'buzzer',
   section: '',
   source: 'all',
@@ -64,9 +69,27 @@ const actions = {
 
   setLobbyField(field, value) {
     lobby[field] = field === 'code' ? value.toUpperCase() : value;
-    lobby.focusField = ['name', 'code', 'challenge', 'server'].includes(field) ? field : null;
+    lobby.focusField = ['name', 'location', 'code', 'challenge', 'server'].includes(field) ? field : null;
     if (field === 'name') setMyName(value);
+    if (field === 'location') setMyLocation(value);
     if (field === 'mode' || field === 'section' || field === 'focusMode') render();
+  },
+
+  /** Push current stats to the shared leaderboard. Best-effort: failures are silent. */
+  submitLeaderboardStats() {
+    const record = overallRecord();
+    net.submitLeaderboard({
+      playerId: myPlayerId(),
+      name: lobby.name || myName() || 'Anonymous',
+      location: lobby.location || myLocation() || '',
+      xp: state.xp,
+      level: levelInfo(state.xp).level,
+      accuracy: state.totalAnswered ? state.totalCorrect / state.totalAnswered : 0,
+      totalAnswered: state.totalAnswered,
+      wins: record.wins,
+      bestCombo: state.bestCombo,
+      badgeCount: state.badges.length,
+    });
   },
 
   // ── live matches ──
@@ -166,9 +189,19 @@ const actions = {
     const result = !snapshot.winnerPid ? 'draw' : snapshot.winnerPid === snapshot.you ? 'win' : 'loss';
     if (result === 'win') xp += 25;
 
+    // Record the match first so badges that read the head-to-head record
+    // (e.g. "win your first duel") see this result, not the prior one.
+    const record = recordMatch({
+      opponent: them?.name ?? 'Opponent',
+      result,
+      myScore: you.score,
+      theirScore: them?.score ?? 0,
+      mode: snapshot.modeLabel,
+    });
+
     const levelBefore = levelInfo(state.xp).level;
     state = { ...state, xp: state.xp + (result === 'win' ? 25 : 0) };
-    const { state: next } = finalizeRound(state, {
+    const { state: next, newBadges } = finalizeRound(state, {
       mode: snapshot.mode,
       answered: snapshot.log?.length ?? 0,
       correct,
@@ -179,19 +212,13 @@ const actions = {
     });
     state = next;
     saveState(state);
+    this.submitLeaderboardStats();
     const levelAfter = levelInfo(state.xp).level;
-
-    const record = recordMatch({
-      opponent: them?.name ?? 'Opponent',
-      result,
-      myScore: you.score,
-      theirScore: them?.score ?? 0,
-      mode: snapshot.modeLabel,
-    });
 
     const tally = `${record.wins}–${record.losses}${record.draws ? `–${record.draws}` : ''}`;
     const levelUp = levelAfter > levelBefore ? ` Level ${levelAfter}!` : '';
-    return `+${xp} XP. You're now ${tally} against ${record.name}.${levelUp}`;
+    const badgeNote = newBadges.length ? ` New badge${newBadges.length > 1 ? 's' : ''}: ${newBadges.map((b) => b.name).join(', ')}!` : '';
+    return `+${xp} XP. You're now ${tally} against ${record.name}.${levelUp}${badgeNote}`;
   },
 
   // ── challenge codes ──
@@ -249,6 +276,7 @@ const actions = {
     const { state: next, newBadges } = finalizeRound(state, session);
     state = next;
     saveState(state);
+    this.submitLeaderboardStats();
     const levelAfter = levelInfo(state.xp).level;
 
     // A challenge run turns into a code to send, or a verdict against theirs.
