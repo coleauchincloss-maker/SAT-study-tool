@@ -6,6 +6,23 @@ import { topNav } from '../components/nav.js';
 import { myName, rivalList } from '../rivals.js';
 import { serverBase } from '../net.js';
 
+/**
+ * Self-hosting tools (pointing at a different server, generating fresh
+ * questions from an API key you set on your own machine) only make sense
+ * when you're running server.py yourself — a friend who just opened a
+ * shared deployed link has no use for them and no way to act on them.
+ */
+function isSelfHosted() {
+  const host = location.hostname;
+  return (
+    host === 'localhost' ||
+    host === '127.0.0.1' ||
+    /^192\.168\.\d{1,3}\.\d{1,3}$/.test(host) ||
+    /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host) ||
+    /^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/.test(host)
+  );
+}
+
 const MODE_META = {
   buzzer: { icon: '⚡', badge: 'MAIN MODE' },
   steal: { icon: '🥊' },
@@ -200,7 +217,7 @@ export function renderHome(root, { state, actions, lobby }) {
         <section class="card col-12">
           <details class="vs-advanced">
             <summary>More ways to play</summary>
-            <div class="advanced-body">
+            <div class="advanced-body ${isSelfHosted() ? '' : 'advanced-body-solo'}">
               <div class="advanced-col">
                 <h3 class="no-step">Challenge code</h3>
                 <p class="card-sub">Not online at the same time? Play eight questions, send the code, and they race your run.</p>
@@ -210,6 +227,7 @@ export function renderHome(root, { state, actions, lobby }) {
                   <button class="btn btn-primary" data-action="challenge-accept">Accept</button>
                 </div>
               </div>
+              ${isSelfHosted() ? `
               <div class="advanced-col">
                 <h3 class="no-step">Play someone not on your network</h3>
                 <p class="card-sub">
@@ -234,7 +252,7 @@ export function renderHome(root, { state, actions, lobby }) {
                   <button class="btn btn-ghost" data-action="generate" data-count="10" ${info?.generation ? '' : 'disabled'}>Generate 10</button>
                   <span class="gen-status">${esc(lobby.genStatus ?? '')}</span>
                 </div>
-              </div>
+              </div>` : ''}
             </div>
           </details>
         </section>

@@ -1076,6 +1076,7 @@ h3.no-step.spaced { margin-top: 22px; }
 .status-line a { color: var(--accent-2); font-weight: 600; text-decoration: none; }
 
 .advanced-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 16px; }
+.advanced-body-solo { grid-template-columns: 1fr; max-width: 420px; }
 .advanced-col h3 { margin-bottom: 2px; }
 .vs-advanced summary { font-weight: 650; cursor: pointer; }
 .rival-list-compact li { padding: 9px 0; }
