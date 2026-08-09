@@ -1,0 +1,24 @@
+# Fly.io config for the match server.
+#
+# IMPORTANT: match state lives in memory, so this must run on exactly ONE
+# machine. Two machines would mean two separate sets of rooms, and a player
+# could be routed to the one that doesn't have their room. After deploying:
+#
+#     fly scale count 1
+#
+app = "sat-quest"
+primary_region = "iad"
+
+[build]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Do NOT auto-stop: suspending a machine mid-match drops every live room.
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

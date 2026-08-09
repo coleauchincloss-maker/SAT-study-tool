@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAT Quest — 1v1 SAT duels</title>
+    <meta name="description" content="Play a friend head-to-head on SAT questions: buzzer races, steals, category drafts and wager rounds, with live rooms and rivalry records." />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237c5cff'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='%230b0d17' font-family='sans-serif'>%E2%9A%94</text></svg>"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+
+    <!--
+      #app starts with visible content on purpose. A blank screen is impossible to
+      diagnose remotely: it could be the page never arriving, the CSS failing, or
+      the script dying. With this here, "blank" can only mean the HTML itself
+      never loaded — which is a network problem, not an app problem.
+    -->
+    <main id="app" tabindex="-1">
+      <div class="boot" id="boot">
+        <h1>SAT Quest</h1>
+        <p id="boot-msg">Starting…</p>
+        <noscript>
+          <p class="boot-bad">
+            JavaScript is switched off in this browser. SAT Quest needs it to run.
+          </p>
+        </noscript>
+      </div>
+    </main>
+
+    <!--
+      Match events are announced here for screen readers: the scoreboard and
+      banners change without any focus moving, so without this a blind player
+      would get no notification that a round resolved.
+    -->
+    <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!--
+      Plain (non-module) script so it runs even on a browser that ignores the
+      module below, and so it is in place before the app starts.
+    -->
+    <script>
+      (function () {
+        var msg = document.getElementById('boot-msg');
+
+        function fail(title, detail) {
+          var boot = document.getElementById('boot');
+          if (!boot) return;
+          boot.innerHTML =
+            '<h1>SAT Quest</h1>' +
+            '<p class="boot-bad">' + title + '</p>' +
+            '<pre class="boot-detail">' + String(detail).replace(/[<>&]/g, '') + '</pre>' +
+            '<p class="boot-hint">Read this message out to whoever set up the game — ' +
+            'it says exactly what went wrong.</p>';
+        }
+
+        // An older browser silently ignores a module script tag, which is the
+        // classic cause of a completely blank page. Say so instead.
+        var supportsModules = 'noModule' in document.createElement('script');
+        if (!supportsModules) {
+          fail(
+            'This browser is too old to run SAT Quest.',
+            'It does not support JavaScript modules. Try Safari or Chrome, fully updated.'
+          );
+          return;
+        }
+
+        window.addEventListener('error', function (event) {
+          // Only report failures that happen before the app has painted.
+          if (document.getElementById('boot')) {
+            fail('SAT Quest could not start.', (event && event.message) || 'Unknown script error');
+          }
+        });
+        window.addEventListener('unhandledrejection', function (event) {
+          if (document.getElementById('boot')) {
+            fail('SAT Quest could not start.', (event && event.reason) || 'Unknown error');
+          }
+        });
+
+        // If the module never runs, find out which file the browser could not
+        // fetch and name it, rather than reporting a useless "it didn't work".
+        setTimeout(function () {
+          if (!document.getElementById('boot') || !msg || msg.textContent !== 'Starting…') return;
+          msg.textContent = 'Checking what failed…';
+
+          var files = [
+            'js/main.js', 'js/net.js', 'js/bank.js', 'js/engine.js', 'js/state.js',
+            'js/rivals.js', 'js/theme.js', 'js/a11y.js', 'js/questions.js',
+            'js/views/home.js', 'js/views/match.js', 'js/views/quiz.js',
+            'js/views/results.js', 'js/views/dashboard.js',
+            'js/components/ui.js', 'js/components/calculator.js', 'js/components/reference.js',
+            'data/questions.json'
+          ];
+
+          Promise.all(files.map(function (f) {
+            return fetch(f, { cache: 'no-store' })
+              .then(function (r) { return r.ok ? null : f + '  →  HTTP ' + r.status; })
+              .catch(function () { return f + '  →  could not be downloaded'; });
+          })).then(function (results) {
+            var bad = results.filter(Boolean);
+            if (bad.length) {
+              fail('Some of the app failed to download.', bad.join('\n'));
+            } else {
+              // Everything is fetchable, so the failure is inside the code.
+              fail(
+                'The app downloaded but did not start.',
+                'All files are reachable, so this is a browser problem rather than a ' +
+                  'network one. Reload once; if it persists, note the browser and version.'
+              );
+            }
+          });
+        }, 8000);
+      })();
+    </script>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

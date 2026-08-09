@@ -1,0 +1,866 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "m-alg-1",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear equations in one variable",
+      "difficulty": 1,
+      "prompt": "If 3(x − 4) = 2x + 5, what is the value of x?",
+      "choices": [
+        "7",
+        "11",
+        "17",
+        "21"
+      ],
+      "answer": 2,
+      "explanation": "Distribute the 3: 3x − 12 = 2x + 5. Subtract 2x from both sides: x − 12 = 5, so x = 17."
+    },
+    {
+      "id": "m-alg-2",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear functions",
+      "difficulty": 1,
+      "prompt": "The function f is defined by f(x) = −2x + 7. If f(a) = 1, what is the value of a?",
+      "choices": [
+        "−3",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": 2,
+      "explanation": "Set −2a + 7 = 1. Then −2a = −6, so a = 3."
+    },
+    {
+      "id": "m-alg-3",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Systems of two linear equations",
+      "difficulty": 2,
+      "prompt": "If 2x + y = 11 and x − y = 1, what is the value of x + y?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "answer": 2,
+      "explanation": "Add the equations: 3x = 12, so x = 4. Then 4 − y = 1 gives y = 3, and x + y = 7."
+    },
+    {
+      "id": "m-alg-4",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear inequalities",
+      "difficulty": 2,
+      "prompt": "Which of the following describes all solutions to 5 − 2x ≥ 11?",
+      "choices": [
+        "x ≤ −3",
+        "x ≥ −3",
+        "x ≤ 3",
+        "x ≥ 3"
+      ],
+      "answer": 0,
+      "explanation": "Subtract 5: −2x ≥ 6. Divide by −2 and flip the inequality sign: x ≤ −3."
+    },
+    {
+      "id": "m-alg-5",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Linear models in context",
+      "difficulty": 1,
+      "prompt": "A gym charges a one-time $25 signup fee plus $18 per month. After how many months will a member have paid a total of $205?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "12"
+      ],
+      "answer": 2,
+      "explanation": "Solve 25 + 18m = 205. Then 18m = 180, so m = 10."
+    },
+    {
+      "id": "m-alg-6",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Systems with no solution",
+      "difficulty": 3,
+      "prompt": "For which value of k does the system 3x + ky = 7 and 6x + 4y = 1 have no solution?",
+      "choices": [
+        "−2",
+        "1/2",
+        "2",
+        "4"
+      ],
+      "answer": 2,
+      "explanation": "No solution means the lines are parallel: the x- and y-coefficients scale by the same factor while the constants do not. Since 6 ÷ 3 = 2, we need 4 ÷ k = 2, so k = 2."
+    },
+    {
+      "id": "m-alg-7",
+      "section": "math",
+      "domain": "Algebra",
+      "skill": "Interpreting linear models",
+      "difficulty": 1,
+      "prompt": "The function C(m) = 45 + 0.12m gives the monthly cost, in dollars, of a phone plan that includes m minutes of international calling. What does 0.12 represent?",
+      "choices": [
+        "The fixed monthly fee, in dollars",
+        "The cost, in dollars, per minute of international calling",
+        "The total cost, in dollars, for one month",
+        "The number of minutes included at no extra charge"
+      ],
+      "answer": 1,
+      "explanation": "In a linear model, the coefficient of the variable is the rate of change — here, dollars added per minute."
+    },
+    {
+      "id": "m-adv-1",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Quadratic equations",
+      "difficulty": 2,
+      "prompt": "What is the sum of the solutions to x² − 5x − 14 = 0?",
+      "choices": [
+        "−5",
+        "2",
+        "5",
+        "7"
+      ],
+      "answer": 2,
+      "explanation": "Factor: (x − 7)(x + 2) = 0, so x = 7 or x = −2, and 7 + (−2) = 5. (Or use −b/a = 5 directly.)"
+    },
+    {
+      "id": "m-adv-2",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Quadratic graphs and vertex form",
+      "difficulty": 2,
+      "prompt": "The graph of y = (x − 3)² − 4 in the xy-plane is a parabola. What is its vertex?",
+      "choices": [
+        "(−3, −4)",
+        "(3, −4)",
+        "(3, 4)",
+        "(−3, 4)"
+      ],
+      "answer": 1,
+      "explanation": "In vertex form y = (x − h)² + k the vertex is (h, k). Here h = 3 and k = −4."
+    },
+    {
+      "id": "m-adv-3",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Exponential growth",
+      "difficulty": 2,
+      "prompt": "A population of 400 bacteria doubles every 6 hours. If growth continues at this rate, how many bacteria are there after 18 hours?",
+      "choices": [
+        "1,200",
+        "2,400",
+        "3,200",
+        "4,800"
+      ],
+      "answer": 2,
+      "explanation": "18 hours is three doubling periods: 400 × 2³ = 400 × 8 = 3,200."
+    },
+    {
+      "id": "m-adv-4",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Radical equations",
+      "difficulty": 3,
+      "prompt": "What is the solution to √(2x + 3) = x?",
+      "choices": [
+        "−1",
+        "1",
+        "3",
+        "Both −1 and 3"
+      ],
+      "answer": 2,
+      "explanation": "Square both sides: 2x + 3 = x², so x² − 2x − 3 = 0 and (x − 3)(x + 1) = 0. Check both: x = 3 works, but x = −1 makes the left side positive and the right side negative, so it is extraneous."
+    },
+    {
+      "id": "m-adv-5",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Polynomial factors and zeros",
+      "difficulty": 3,
+      "prompt": "For p(x) = x³ − 2x² − 5x + 6, which of the following is a factor of p(x)?",
+      "choices": [
+        "(x + 1)",
+        "(x − 2)",
+        "(x − 3)",
+        "(x + 3)"
+      ],
+      "answer": 2,
+      "explanation": "(x − c) is a factor exactly when p(c) = 0. Here p(3) = 27 − 18 − 15 + 6 = 0, so (x − 3) is a factor. The others give nonzero values."
+    },
+    {
+      "id": "m-adv-6",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Exponent rules",
+      "difficulty": 1,
+      "prompt": "Which expression is equivalent to (2x²y³)³?",
+      "choices": [
+        "6x⁶y⁹",
+        "8x⁵y⁶",
+        "8x⁶y⁹",
+        "8x⁶y⁶"
+      ],
+      "answer": 2,
+      "explanation": "Raise each factor to the third power: 2³ = 8, (x²)³ = x⁶, and (y³)³ = y⁹."
+    },
+    {
+      "id": "m-adv-7",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Rational equations",
+      "difficulty": 3,
+      "prompt": "If 1/x + 1/(2x) = 3 and x ≠ 0, what is the value of x?",
+      "choices": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2"
+      ],
+      "answer": 2,
+      "explanation": "Combine over 2x: (2 + 1)/(2x) = 3, so 3/(2x) = 3. Then 2x = 1 and x = 1/2."
+    },
+    {
+      "id": "m-adv-8",
+      "section": "math",
+      "domain": "Advanced Math",
+      "skill": "Discriminant and number of solutions",
+      "difficulty": 3,
+      "prompt": "How many distinct real solutions does 2x² + 3x + 5 = 0 have?",
+      "choices": [
+        "Two distinct real solutions",
+        "Exactly one real solution",
+        "No real solutions",
+        "Infinitely many solutions"
+      ],
+      "answer": 2,
+      "explanation": "The discriminant is b² − 4ac = 9 − 40 = −31. A negative discriminant means no real solutions."
+    },
+    {
+      "id": "m-psd-1",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Percentages",
+      "difficulty": 2,
+      "prompt": "A jacket is on sale for $80 after a 20% discount off the original price. What was the original price?",
+      "choices": [
+        "$88",
+        "$96",
+        "$100",
+        "$120"
+      ],
+      "answer": 2,
+      "explanation": "The sale price is 80% of the original: 0.80p = 80, so p = 100. (Adding 20% back to $80 is the classic trap.)"
+    },
+    {
+      "id": "m-psd-2",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Rates and unit rates",
+      "difficulty": 1,
+      "prompt": "A car travels 240 miles using 8 gallons of gasoline. At this rate, how many miles can it travel using 14 gallons?",
+      "choices": [
+        "360",
+        "400",
+        "420",
+        "480"
+      ],
+      "answer": 2,
+      "explanation": "The rate is 240 ÷ 8 = 30 miles per gallon, and 30 × 14 = 420 miles."
+    },
+    {
+      "id": "m-psd-3",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Mean and center",
+      "difficulty": 2,
+      "prompt": "The mean of five numbers is 12. Four of the numbers are 8, 10, 14, and 16. What is the fifth number?",
+      "choices": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "answer": 1,
+      "explanation": "The five numbers sum to 5 × 12 = 60. The four given numbers sum to 48, so the fifth is 60 − 48 = 12."
+    },
+    {
+      "id": "m-psd-4",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Two-way tables and probability",
+      "difficulty": 3,
+      "passage": "The table shows the instruction format preferred by 100 surveyed students.",
+      "table": {
+        "headers": [
+          "",
+          "Online",
+          "In person",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Juniors",
+            "24",
+            "36",
+            "60"
+          ],
+          [
+            "Seniors",
+            "30",
+            "10",
+            "40"
+          ],
+          [
+            "Total",
+            "54",
+            "46",
+            "100"
+          ]
+        ]
+      },
+      "prompt": "One of the students who prefer online instruction is selected at random. What is the probability that the student is a senior?",
+      "choices": [
+        "3/10",
+        "5/9",
+        "27/50",
+        "1/2"
+      ],
+      "answer": 1,
+      "explanation": "The condition restricts the pool to the 54 students who prefer online. Of those, 30 are seniors: 30/54 = 5/9."
+    },
+    {
+      "id": "m-psd-5",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Percent change",
+      "difficulty": 2,
+      "prompt": "A shop’s weekly sales rose from 45 units to 63 units. What was the percent increase?",
+      "choices": [
+        "28%",
+        "36%",
+        "40%",
+        "44%"
+      ],
+      "answer": 2,
+      "explanation": "The increase is 18 units. Divide by the original amount: 18 ÷ 45 = 0.40, or 40%."
+    },
+    {
+      "id": "m-psd-6",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Ratios and proportions",
+      "difficulty": 1,
+      "prompt": "A recipe uses 3 cups of flour to make 24 cookies. How many cups of flour are needed for 60 cookies?",
+      "choices": [
+        "6",
+        "7.5",
+        "8",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "Set up 3/24 = x/60. Then x = 60 × (3/24) = 7.5 cups."
+    },
+    {
+      "id": "m-psd-7",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Scatterplots and models",
+      "difficulty": 2,
+      "prompt": "For a scatterplot relating weekly practice hours x to test score y, the line of best fit is y = 1.4x + 12. Which statement best interprets the slope?",
+      "choices": [
+        "A student who does not practice is predicted to score 1.4 points.",
+        "Each additional hour of practice is associated with a predicted increase of 1.4 points.",
+        "Each additional point scored is associated with 1.4 more hours of practice.",
+        "The maximum predicted score is 1.4 points."
+      ],
+      "answer": 1,
+      "explanation": "Slope is predicted change in y per one-unit change in x — points per hour, not hours per point."
+    },
+    {
+      "id": "m-psd-8",
+      "section": "math",
+      "domain": "Problem-Solving & Data",
+      "skill": "Inference from samples",
+      "difficulty": 3,
+      "prompt": "A researcher randomly selects 500 of the 12,000 students at a university and finds that 62% commute by bus. Which conclusion is most appropriate?",
+      "choices": [
+        "Exactly 62% of all 12,000 students commute by bus.",
+        "It is plausible that about 62% of all students at the university commute by bus.",
+        "About 62% of university students nationwide commute by bus.",
+        "No conclusion about the university’s students can be drawn from a sample."
+      ],
+      "answer": 1,
+      "explanation": "A random sample supports an estimate about the population it was drawn from — approximately, not exactly — and it does not generalize beyond that population."
+    },
+    {
+      "id": "m-geo-1",
+      "section": "math",
+      "domain": "Geometry & Trig",
+      "skill": "Circles",
+      "difficulty": 2,
+      "prompt": "A circle has area 36π square centimeters. What is its circumference, in centimeters?",
+      "choices": [
+        "6π",
+        "12π",
+        "18π",
+        "36π"
+      ],
+      "answer": 1,
+      "explanation": "From πr² = 36π we get r = 6. Then C = 2πr = 12π."
+    },
+    {
+      "id": "m-geo-2",
+      "section": "math",
+      "domain": "Geometry & Trig",
+      "skill": "Right triangle trigonometry",
+      "difficulty": 2,
+      "prompt": "In a right triangle, the legs measure 6 and 8. What is the sine of the angle opposite the leg of length 6?",
+      "choices": [
+        "3/5",
+        "4/5",
+        "3/4",
+        "5/3"
+      ],
+      "answer": 0,
+      "explanation": "The hypotenuse is 10 (a 6-8-10 triangle). Sine is opposite over hypotenuse: 6/10 = 3/5."
+    },
+    {
+      "id": "m-geo-3",
+      "section": "math",
+      "domain": "Geometry & Trig",
+      "skill": "Angle relationships",
+      "difficulty": 1,
+      "prompt": "Two supplementary angles have measures 4x° and (x + 30)°. What is the measure of the larger angle?",
+      "choices": [
+        "30°",
+        "60°",
+        "120°",
+        "150°"
+      ],
+      "answer": 2,
+      "explanation": "Supplementary angles sum to 180: 4x + x + 30 = 180, so x = 30. The angles are 120° and 60°."
+    },
+    {
+      "id": "m-geo-4",
+      "section": "math",
+      "domain": "Geometry & Trig",
+      "skill": "Volume",
+      "difficulty": 1,
+      "prompt": "A right circular cylinder has radius 3 and height 10. What is its volume?",
+      "choices": [
+        "30π",
+        "60π",
+        "90π",
+        "180π"
+      ],
+      "answer": 2,
+      "explanation": "V = πr²h = π(3²)(10) = 90π."
+    },
+    {
+      "id": "m-geo-5",
+      "section": "math",
+      "domain": "Geometry & Trig",
+      "skill": "Similar triangles",
+      "difficulty": 3,
+      "prompt": "Triangle ABC is similar to triangle DEF, with AB = 6, BC = 9, and DE = 10. What is the length of EF?",
+      "choices": [
+        "12",
+        "13.5",
+        "15",
+        "16"
+      ],
+      "answer": 2,
+      "explanation": "Corresponding sides are proportional: EF/BC = DE/AB = 10/6. So EF = 9 × (10/6) = 15."
+    },
+    {
+      "id": "r-sec-1",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Subject-verb agreement",
+      "difficulty": 2,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nThe collection of rare manuscripts, which the library acquired last spring, ______ now available to researchers.",
+      "choices": [
+        "are",
+        "were",
+        "is",
+        "being"
+      ],
+      "answer": 2,
+      "explanation": "The subject is the singular noun “collection,” not “manuscripts,” so the verb must be singular: is. The phrase between the commas does not change the subject."
+    },
+    {
+      "id": "r-sec-2",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Sentence boundaries",
+      "difficulty": 2,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nThe bridge was completed in 1937 ______ remains one of the longest suspension spans in the region.",
+      "choices": [
+        ", it",
+        "; it",
+        ", it being",
+        " it"
+      ],
+      "answer": 1,
+      "explanation": "Two independent clauses cannot be joined by a comma alone (a comma splice) or run together. A semicolon correctly links them."
+    },
+    {
+      "id": "r-sec-3",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Possessives and plurals",
+      "difficulty": 2,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nBecause several eagles had abandoned the site in winter, the ______ sudden return in April surprised the researchers.",
+      "choices": [
+        "eagles",
+        "eagle’s",
+        "eagles’",
+        "eagles’s"
+      ],
+      "answer": 2,
+      "explanation": "The return belongs to more than one eagle, so a plural possessive is needed: eagles’ (plural noun ending in -s takes only an apostrophe)."
+    },
+    {
+      "id": "r-sec-4",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Verb tense",
+      "difficulty": 3,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nBy the time the survey team arrived in 1911, the glacier ______ nearly two kilometers since the first measurements were taken.",
+      "choices": [
+        "retreats",
+        "has retreated",
+        "had retreated",
+        "will retreat"
+      ],
+      "answer": 2,
+      "explanation": "The retreat was completed before another past event (the 1911 arrival), which calls for the past perfect: had retreated."
+    },
+    {
+      "id": "r-sec-5",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Colons and punctuation",
+      "difficulty": 2,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nThe engineers identified a single cause for the equipment ______ corrosion in the sensor housing.",
+      "choices": [
+        "failure, salt",
+        "failure: salt",
+        "failure; salt",
+        "failure salt"
+      ],
+      "answer": 1,
+      "explanation": "A complete clause precedes the blank and what follows explains “a single cause,” so a colon is appropriate. A semicolon would require an independent clause after it."
+    },
+    {
+      "id": "r-sec-6",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Subject-verb agreement",
+      "difficulty": 3,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nNeither the director nor the producers ______ willing to comment on the delay.",
+      "choices": [
+        "was",
+        "were",
+        "has been",
+        "is"
+      ],
+      "answer": 1,
+      "explanation": "With “neither … nor,” the verb agrees with the nearer subject. “Producers” is plural, so the verb is were."
+    },
+    {
+      "id": "r-sec-7",
+      "section": "rw",
+      "domain": "Standard English Conventions",
+      "skill": "Finite verbs and fragments",
+      "difficulty": 1,
+      "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nResearchers studying the cave ______ that the pigments were made from locally sourced ochre.",
+      "choices": [
+        "concluding",
+        "to conclude",
+        "concluded",
+        "having concluded"
+      ],
+      "answer": 2,
+      "explanation": "The sentence has no other main verb, so it needs a finite verb. “Concluded” supplies one; the other options leave a fragment."
+    },
+    {
+      "id": "r-eoi-1",
+      "section": "rw",
+      "domain": "Expression of Ideas",
+      "skill": "Transitions",
+      "difficulty": 2,
+      "passage": "Solar panels have become dramatically cheaper over the past decade, falling in price by more than 80%. ______ installation costs in many cities have barely fallen, and those costs now make up the majority of a typical residential system’s price.",
+      "prompt": "Which choice completes the text with the most logical transition?",
+      "choices": [
+        "For example,",
+        "Therefore,",
+        "However,",
+        "In addition,"
+      ],
+      "answer": 2,
+      "explanation": "The second sentence contrasts with the first: prices fell, but one major cost did not. “However” signals that contrast."
+    },
+    {
+      "id": "r-eoi-2",
+      "section": "rw",
+      "domain": "Expression of Ideas",
+      "skill": "Transitions",
+      "difficulty": 2,
+      "passage": "The reading room was designed to hold as many as 200 people at once. ______ the architects included eight separate exits and unusually wide corridors.",
+      "prompt": "Which choice completes the text with the most logical transition?",
+      "choices": [
+        "Nevertheless,",
+        "Accordingly,",
+        "For instance,",
+        "In contrast,"
+      ],
+      "answer": 1,
+      "explanation": "The design decision follows logically from the occupancy figure, so a cause-and-effect transition is needed: Accordingly."
+    },
+    {
+      "id": "r-eoi-3",
+      "section": "rw",
+      "domain": "Expression of Ideas",
+      "skill": "Rhetorical synthesis",
+      "difficulty": 2,
+      "notes": [
+        "Chandra Bose is a marine ecologist.",
+        "She studies seagrass meadows in the Bay of Bengal.",
+        "Seagrass stores carbon in the sediment beneath it.",
+        "Her 2023 survey found those meadows store 1.8 times more carbon per hectare than nearby mangroves."
+      ],
+      "prompt": "While researching a topic, a student has taken the notes above. The student wants to emphasize the finding of the 2023 survey. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "choices": [
+        "Chandra Bose, a marine ecologist, studies seagrass meadows in the Bay of Bengal.",
+        "Bose’s 2023 survey found that Bay of Bengal seagrass meadows store 1.8 times more carbon per hectare than nearby mangroves.",
+        "Seagrass meadows store carbon in the sediment that lies beneath them.",
+        "Marine ecologists study many kinds of coastal habitat, including both seagrass and mangroves."
+      ],
+      "answer": 1,
+      "explanation": "The goal is to emphasize the survey’s finding, so the correct choice must state the result itself — the 1.8× comparison. The others give background only."
+    },
+    {
+      "id": "r-eoi-4",
+      "section": "rw",
+      "domain": "Expression of Ideas",
+      "skill": "Rhetorical synthesis",
+      "difficulty": 2,
+      "notes": [
+        "Ferrofluid is a liquid containing magnetic nanoparticles.",
+        "It changes shape in response to a magnetic field.",
+        "Engineer Lena Vogt uses ferrofluid inside vibration dampers.",
+        "Her dampers reduced vibration in test turbines by 34%."
+      ],
+      "prompt": "While researching a topic, a student has taken the notes above. The student wants to introduce ferrofluid to an audience unfamiliar with it. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "choices": [
+        "Vogt’s dampers reduced vibration in test turbines by 34%.",
+        "Ferrofluid is a liquid that contains magnetic nanoparticles and changes shape in response to a magnetic field.",
+        "Engineer Lena Vogt has used ferrofluid inside her vibration dampers.",
+        "Turbine vibration is a persistent problem for engineers."
+      ],
+      "answer": 1,
+      "explanation": "Introducing an unfamiliar subject calls for a definition of that subject. Only one choice explains what ferrofluid is."
+    },
+    {
+      "id": "r-cs-1",
+      "section": "rw",
+      "domain": "Craft & Structure",
+      "skill": "Words in context",
+      "difficulty": 2,
+      "passage": "Early published accounts of the 1874 expedition ______ the difficulty of the mountain crossing, describing it as little more than a long walk over rough ground. The journals the party kept at the time, released decades later, tell a harder story.",
+      "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [
+        "exaggerated",
+        "minimized",
+        "documented",
+        "celebrated"
+      ],
+      "answer": 1,
+      "explanation": "“Little more than a long walk” downplays the crossing, and the next sentence corrects that impression — so the accounts minimized the difficulty."
+    },
+    {
+      "id": "r-cs-2",
+      "section": "rw",
+      "domain": "Craft & Structure",
+      "skill": "Words in context",
+      "difficulty": 2,
+      "passage": "Though her paintings were reproduced on posters and magazine covers throughout the 1960s, Okonkwo herself remained ______ declining nearly every interview request and appearing in public only twice in twenty years.",
+      "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [
+        "prolific",
+        "reclusive",
+        "ambivalent",
+        "celebrated"
+      ],
+      "answer": 1,
+      "explanation": "The details after the blank describe withdrawal from public life, which is what “reclusive” means. “Celebrated” describes the paintings, not her behavior."
+    },
+    {
+      "id": "r-cs-3",
+      "section": "rw",
+      "domain": "Craft & Structure",
+      "skill": "Text structure and purpose",
+      "difficulty": 3,
+      "passage": "For decades, textbooks described the axolotl as a curiosity: a salamander that never leaves its larval form. Recent work has shifted the emphasis. Because axolotls regrow limbs, spinal tissue, and even portions of the heart, they have become central to research on regeneration. The curiosity, it turns out, is also a laboratory.",
+      "prompt": "What is the main rhetorical purpose of the final sentence?",
+      "choices": [
+        "It introduces research findings that contradict earlier descriptions of the axolotl.",
+        "It reframes the passage’s opening description to show that the earlier view was incomplete rather than mistaken.",
+        "It questions whether axolotls are appropriate subjects for laboratory research.",
+        "It offers specific evidence about how axolotls regrow limb tissue."
+      ],
+      "answer": 1,
+      "explanation": "The sentence reuses the word “curiosity” from the opening and adds to it (“is also a laboratory”) — extending the earlier view rather than overturning it or supplying new evidence."
+    },
+    {
+      "id": "r-cs-4",
+      "section": "rw",
+      "domain": "Craft & Structure",
+      "skill": "Cross-text connections",
+      "difficulty": 3,
+      "passage": "Text 1: Planners have long argued that adding lanes to a congested highway relieves traffic. If capacity rises while the number of drivers stays roughly constant, each driver should move more freely.\n\nText 2: Studies of expanded highways in several metropolitan areas find that traffic volume rises to fill the new lanes within a few years — a pattern researchers call induced demand. Capacity, in these cases, does not stay ahead of demand; it generates it.",
+      "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the argument in Text 1?",
+      "choices": [
+        "By agreeing that added capacity relieves congestion but noting that it is expensive.",
+        "By pointing out that the argument rests on an assumption — a roughly constant number of drivers — that highway expansion itself tends to violate.",
+        "By arguing that congestion is not a serious problem in most metropolitan areas.",
+        "By suggesting that planners should measure congestion using different instruments."
+      ],
+      "answer": 1,
+      "explanation": "Text 1’s conclusion depends on driver numbers holding steady. Text 2’s induced-demand finding attacks exactly that premise."
+    },
+    {
+      "id": "r-cs-5",
+      "section": "rw",
+      "domain": "Craft & Structure",
+      "skill": "Words in context",
+      "difficulty": 3,
+      "passage": "The committee’s final report was ______ it neither endorsed the proposal nor rejected it, leaving the board to decide the matter on its own.",
+      "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [
+        "equivocal:",
+        "emphatic:",
+        "erroneous:",
+        "exhaustive:"
+      ],
+      "answer": 0,
+      "explanation": "“Neither endorsed nor rejected” describes a report that avoids committing to either side — the definition of equivocal."
+    },
+    {
+      "id": "r-ii-1",
+      "section": "rw",
+      "domain": "Information & Ideas",
+      "skill": "Central ideas and details",
+      "difficulty": 2,
+      "passage": "When a honeybee returns from a productive patch of flowers, it performs a looping dance whose angle encodes the direction of the food and whose duration encodes the distance. Bees that watch the dance leave the hive and fly, on average, close to the indicated heading. But the correspondence is loose: individual foragers deviate frequently, and many appear to rely on landmarks they already know. The dance, some researchers now suggest, is less a set of instructions than a prompt to search a particular region.",
+      "prompt": "Which choice best states the main idea of the text?",
+      "choices": [
+        "Honeybee dances encode the direction and distance of food with a high degree of precision.",
+        "Foraging bees disregard the dance and navigate entirely by familiar landmarks.",
+        "The dance conveys approximate information that individual foragers combine with knowledge of their own.",
+        "Researchers disagree about whether honeybees communicate with one another at all."
+      ],
+      "answer": 2,
+      "explanation": "The passage grants that the dance carries directional information but stresses that it is loose and supplemented by the forager’s own landmarks — an approximate prompt, not precise instructions."
+    },
+    {
+      "id": "r-ii-2",
+      "section": "rw",
+      "domain": "Information & Ideas",
+      "skill": "Command of evidence",
+      "difficulty": 3,
+      "passage": "A student claims that the honeybee dance is not strictly necessary for a bee to relocate a food source it has already visited.",
+      "prompt": "Which finding, if true, would most directly support the student’s claim?",
+      "choices": [
+        "Bees that watch a dance tend to fly close to the heading it indicates.",
+        "Bees prevented from observing any dance still located a flower patch they had visited the previous day.",
+        "The duration of a dance increases in proportion to the distance to the food source.",
+        "Hives with a greater number of dancing bees collect more nectar overall."
+      ],
+      "answer": 1,
+      "explanation": "The claim is about bees succeeding without the dance at a known source. Only one choice describes bees with no access to a dance finding a previously visited patch."
+    },
+    {
+      "id": "r-ii-3",
+      "section": "rw",
+      "domain": "Information & Ideas",
+      "skill": "Inferences",
+      "difficulty": 2,
+      "passage": "Archaeologists excavating the settlement found grinding stones in nearly every household but ovens in only three large buildings at the center of the site. Grain processing therefore appears to have been carried out privately, household by household, while baking ______",
+      "prompt": "Which choice most logically completes the text?",
+      "choices": [
+        "was shared across the community.",
+        "was unknown to the settlement’s residents.",
+        "required no specialized equipment.",
+        "was performed less frequently than grinding."
+      ],
+      "answer": 0,
+      "explanation": "Grinding stones everywhere but ovens in only a few central buildings implies baking was communal. The evidence says nothing about frequency, and ovens show baking was known and did require equipment."
+    },
+    {
+      "id": "r-ii-4",
+      "section": "rw",
+      "domain": "Information & Ideas",
+      "skill": "Quantitative evidence",
+      "difficulty": 2,
+      "passage": "A biologist measured the germination rate of a wildflower seed under four treatments.",
+      "table": {
+        "headers": [
+          "Treatment",
+          "Germination rate"
+        ],
+        "rows": [
+          [
+            "Untreated",
+            "22%"
+          ],
+          [
+            "Soaked 12 hours",
+            "41%"
+          ],
+          [
+            "Cold-stored 30 days",
+            "58%"
+          ],
+          [
+            "Soaked and cold-stored",
+            "61%"
+          ]
+        ]
+      },
+      "prompt": "Which choice best describes data from the table that support the conclusion that cold storage contributed more to germination than soaking did?",
+      "choices": [
+        "Untreated seeds germinated at 22%, the lowest rate of the four treatments.",
+        "Cold-stored seeds germinated at 58%, compared with 41% for soaked seeds.",
+        "Seeds that were both soaked and cold-stored germinated at 61%.",
+        "Every treatment produced a higher germination rate than no treatment at all."
+      ],
+      "answer": 1,
+      "explanation": "To compare the two treatments you need the two figures side by side: 58% for cold storage against 41% for soaking. The combined treatment cannot separate their effects."
+    },
+    {
+      "id": "r-ii-5",
+      "section": "rw",
+      "domain": "Information & Ideas",
+      "skill": "Inferences",
+      "difficulty": 3,
+      "passage": "Two crews restored adjacent stretches of the same stream. One planted only willows; the other planted a mix of eight native species. Five years later, the mixed plot supported more insect species and lost measurably less soil during floods, even though total plant cover was similar in the two plots. This suggests that in stream restoration, ______",
+      "prompt": "Which choice most logically completes the text?",
+      "choices": [
+        "total plant cover is the best available predictor of ecological outcomes.",
+        "the variety of species planted can matter more than the amount of cover achieved.",
+        "willows are unsuitable for planting along streambanks.",
+        "restoration projects rarely succeed in reducing soil loss."
+      ],
+      "answer": 1,
+      "explanation": "Cover was held roughly equal while species variety differed, and the varied plot did better — so variety, not cover, accounts for the difference."
+    }
+  ]
+}
