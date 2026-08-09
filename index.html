@@ -58,6 +58,41 @@
             'it says exactly what went wrong.</p>';
         }
 
+        // A free-tier host (e.g. Render) can put the server to sleep after a
+        // period of inactivity; the first visitor after that waits ~30-50s for
+        // it to wake up. That's expected and not a bug, so it gets its own
+        // friendly, auto-retrying message instead of the technical failure
+        // report below — which is reserved for things that are actually broken.
+        function waking() {
+          var boot = document.getElementById('boot');
+          if (!boot) return;
+          boot.innerHTML =
+            '<h1>SAT Quest</h1>' +
+            '<div class="boot-spinner" aria-hidden="true"></div>' +
+            '<p id="boot-msg">Waking up the server…</p>' +
+            '<p class="boot-hint">This host sleeps when nobody\'s used it in a while — ' +
+            'the first visit after that takes up to a minute. Retrying automatically, ' +
+            'no need to reload.</p>';
+          pingUntilAwake();
+        }
+
+        function pingUntilAwake(attempt) {
+          attempt = attempt || 1;
+          fetch('./ping', { cache: 'no-store' })
+            .then(function (r) {
+              if (r.ok) {
+                location.reload();
+              } else {
+                throw new Error('not ready');
+              }
+            })
+            .catch(function () {
+              var m = document.getElementById('boot-msg');
+              if (m) m.textContent = 'Waking up the server… (attempt ' + attempt + ')';
+              setTimeout(function () { pingUntilAwake(attempt + 1); }, 3000);
+            });
+        }
+
         // An older browser silently ignores a module script tag, which is the
         // classic cause of a completely blank page. Say so instead.
         var supportsModules = 'noModule' in document.createElement('script');
@@ -81,12 +116,19 @@
           }
         });
 
-        // If the module never runs, find out which file the browser could not
-        // fetch and name it, rather than reporting a useless "it didn't work".
+        // If the module never runs, check whether the server itself is even
+        // answering yet before assuming something is actually broken.
         setTimeout(function () {
           if (!document.getElementById('boot') || !msg || msg.textContent !== 'Starting…') return;
           msg.textContent = 'Checking what failed…';
 
+          fetch('./ping', { cache: 'no-store' }).then(
+            function (r) { if (!r.ok) throw new Error('not ready'); return checkFiles(); },
+            function () { waking(); },
+          );
+        }, 8000);
+
+        function checkFiles() {
           var files = [
             'js/main.js', 'js/net.js', 'js/bank.js', 'js/engine.js', 'js/state.js',
             'js/rivals.js', 'js/theme.js', 'js/a11y.js', 'js/questions.js',
@@ -96,7 +138,7 @@
             'data/questions.json'
           ];
 
-          Promise.all(files.map(function (f) {
+          return Promise.all(files.map(function (f) {
             return fetch(f, { cache: 'no-store' })
               .then(function (r) { return r.ok ? null : f + '  →  HTTP ' + r.status; })
               .catch(function () { return f + '  →  could not be downloaded'; });
@@ -113,7 +155,7 @@
               );
             }
           });
-        }, 8000);
+        }
       })();
     </script>
 

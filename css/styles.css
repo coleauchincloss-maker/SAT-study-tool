@@ -999,6 +999,13 @@ p { margin: 0; }
 }
 .boot-hint { margin-top: 12px; font-size: 12.5px !important; color: var(--dim) !important; }
 
+.boot-spinner {
+  width: 34px; height: 34px; margin: 8px auto 18px;
+  border: 3px solid var(--line); border-top-color: var(--accent);
+  border-radius: 50%; animation: boot-spin 0.8s linear infinite;
+}
+@keyframes boot-spin { to { transform: rotate(360deg); } }
+
 /* ───────────────────────────── shared top nav ───────────────────────────── */
 .topbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; }
 .top-nav { display: flex; justify-content: center; gap: 6px; }
