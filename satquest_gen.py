@@ -308,6 +308,17 @@ def _normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", text).strip()
 
 
+def _dedup_key(prompt: str, choices) -> str:
+    """Two questions only count as duplicates if both the stem AND the answer
+    choices match. Several Standard English Conventions templates reuse a
+    generic stem ("Which choice is a complete sentence?") across many
+    different sentences — the sentences live in the choices, not the prompt —
+    so keying on the prompt alone would treat every one of them as a repeat
+    of the first."""
+    choice_key = "|".join(sorted(_normalize(str(c)) for c in (choices or [])))
+    return _normalize(prompt) + "||" + choice_key
+
+
 def _read_bank(path: Path) -> list[dict]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -326,9 +337,9 @@ def load_all() -> list[dict]:
 
 
 def existing_prompts() -> set[str]:
-    """Normalized prompts already in the bank, so we don't generate near-duplicates."""
-    seen = {_normalize(q.get("prompt", "")) for q in load_all()}
-    return {s for s in seen if s}
+    """Normalized (prompt, choices) keys already in the bank, so we don't generate near-duplicates."""
+    seen = {_dedup_key(q.get("prompt", ""), q.get("choices")) for q in load_all()}
+    return {s for s in seen if s.strip("|")}
 
 
 def validate(question: dict, report: GenerationReport, seen: set[str]) -> bool:
@@ -354,7 +365,7 @@ def validate(question: dict, report: GenerationReport, seen: set[str]) -> bool:
         report.note(f"domain {question.get('domain')!r} does not belong to section {section!r}", question)
         return False
 
-    key = _normalize(prompt)
+    key = _dedup_key(prompt, choices)
     if key in seen:
         report.note("duplicate of an existing question", question)
         return False
@@ -466,7 +477,7 @@ def _validate_import(question: dict, report: GenerationReport, seen: set[str]) -
         report.note("section must be 'math' or 'rw'", question)
         return False
 
-    key = _normalize(prompt)
+    key = _dedup_key(prompt, choices)
     if key in seen:
         report.note("duplicate of an existing question", question)
         return False
@@ -477,7 +488,7 @@ def _validate_import(question: dict, report: GenerationReport, seen: set[str]) -
 def import_questions(raw_questions: list[dict]) -> GenerationReport:
     """Validate and store user-submitted questions into data/imported.json."""
     report = GenerationReport(requested=len(raw_questions))
-    seen = existing_prompts() | {_normalize(q.get("prompt", "")) for q in load_imported()}
+    seen = existing_prompts() | {_dedup_key(q.get("prompt", ""), q.get("choices")) for q in load_imported()}
     accepted: list[dict] = []
 
     for raw in raw_questions:

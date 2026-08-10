@@ -891,10 +891,11 @@ def t_possessives_plurals(rng: random.Random) -> dict:
     if singular_owner:
         correct = f"{noun}'s"
         prompt = f"Which choice correctly completes the sentence?\n\nThe ______ schedule changed at the last minute. (referring to one {noun})"
+        distractors = [f"{noun}s", noun, f"{noun}s's"]
     else:
         correct = f"{noun}s'"
         prompt = f"Which choice correctly completes the sentence?\n\nThe ______ schedules all changed at the last minute. (referring to more than one {noun})"
-    distractors = [f"{noun}s", f"{noun}'s'" if singular_owner else f"{noun}'s", f"{noun}s's"]
+        distractors = [f"{noun}'s", noun, f"{noun}s's"]
     choices, ans = build_choices(rng, correct, distractors)
     return blank("rw", "Standard English Conventions", "Possessives and plurals", 2, prompt, choices, ans,
                  f"A single owner takes 's ({noun}'s); multiple owners of a regular plural noun take s' ({noun}s').")
@@ -960,7 +961,7 @@ def t_finite_verbs_fragments(rng: random.Random) -> dict:
     correct = f"{subject} {past} {obj}."
     frag1 = f"{subject} {gerund} {obj}."
     frag2 = f"{subject} {infinitive} {obj}."
-    frag3 = f"{subject}, {gerund} {obj}."
+    frag3 = f"{subject} {obj}, {gerund}."
     prompt = "Which choice is a complete sentence?"
     choices, ans = build_choices(rng, correct, [frag1, frag2, frag3])
     return blank("rw", "Standard English Conventions", "Finite verbs and fragments", 2, prompt, choices, ans,
